@@ -30,7 +30,11 @@ GNU General Public License for more details.
 #ifdef __APPLE__
  #include <dlfcn.h>
  #include <errno.h>
- #define XASHLIB                "libxash.dylib"
+ #ifndef XASH_DEDICATED
+  #define XASHLIB                "libxash.dylib"
+ #else
+  #define XASHLIB                "libxashds.dylib"
+ #endif
  #define dlmount(x)          dlopen(x, RTLD_LAZY)
  #define FreeLibrary(x)          dlclose(x)
  #define GetProcAddress(x, y)    dlsym(x, y)
@@ -38,7 +42,11 @@ GNU General Public License for more details.
 #elif __unix__
  #include <dlfcn.h>
  #include <errno.h>
- #define XASHLIB                "libxash.so"
+ #ifndef XASH_DEDICATED
+  #define XASHLIB                "libxash.so"
+ #else
+  #define XASHLIB                "libxashds.so"
+ #endif
  #define dlmount(x)         dlopen(x, RTLD_NOW)
  #define HINSTANCE               void*
 #elif _WIN32
