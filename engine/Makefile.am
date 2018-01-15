@@ -24,6 +24,7 @@ BASE_SOURCES = \
     common/library.c \
     common/mathlib.c \
     common/matrixlib.c \
+    common/masterlist.c \
     common/model.c \
     common/mod_studio.c \
     common/net_buffer.c \
@@ -75,7 +76,8 @@ BASE_SOURCES = \
     server/sv_phys.c \
     server/sv_pmove.c \
     server/sv_save.c \
-    server/sv_world.c
+    server/sv_world.c \
+    server/sv_query.c
 
 xash3d_LDADD = $(BASE_LDADD) $(SDL2_LIBS)
 xash3d_CFLAGS = \
