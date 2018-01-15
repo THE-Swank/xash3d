@@ -1,4 +1,4 @@
-SUBDIRS = engine game_launch
+SUBDIRS = engine
 
 gitclean:
 	git clean -xdf

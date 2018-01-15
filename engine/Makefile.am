@@ -1,6 +1,7 @@
-lib_LTLIBRARIES = libxash.la libxashds.la
+bin_PROGRAMS = xashds xash3d
 
-BASE_CFLAGS = -lm -ldl -lpthread
+BASE_CFLAGS = -DSINGLE_BINARY
+BASE_LDADD = -lm -ldl -lpthread
 BASE_SOURCES = \
     common/avikit.c \
     common/base_cmd.c \
@@ -76,13 +77,14 @@ BASE_SOURCES = \
     server/sv_save.c \
     server/sv_world.c
 
-
-libxash_la_LIBADD = $(BASE_CFLAGS) $(SDL2_LIBS)
-libxash_la_CFLAGS = -I common -I ../common -I ../pm_shared -I client -I server -I client/vgui \
+xash3d_LDADD = $(BASE_LDADD) $(SDL2_LIBS)
+xash3d_CFLAGS = \
+    $(BASE_CFLAGS) \
     $(SDL2_CFLAGS) \
+    -I common -I ../common -I ../pm_shared -I client -I server -I client/vgui \
     -DXASH_SDL
 
-libxash_la_SOURCES = \
+xash3d_SOURCES = \
     $(BASE_SOURCES) \
     platform/sdl/events.c \
     platform/sdl/gl_sdl.c \
@@ -143,8 +145,10 @@ libxash_la_SOURCES = \
     \
     client/vgui/vgui_draw.c
 
-libxashds_la_LIBADD = $(BASE_CFLAGS)
-libxashds_la_CFLAGS = -I common -I ../common -I ../pm_shared -I client -I server -I client/vgui \
+xashds_LDADD = $(BASE_LDADD)
+xashds_CFLAGS = \
+    $(BASE_CFLAGS) \
+    -I common -I ../common -I ../pm_shared -I client -I server -I client/vgui \
     -DXASH_DEDICATED
-libxashds_la_SOURCES = \
+xashds_SOURCES = \
     $(BASE_SOURCES)
