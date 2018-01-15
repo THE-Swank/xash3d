@@ -693,7 +693,7 @@ const char *SV_GetClientIDString( sv_client_t *cl )
 		}
 		else if( cl->auth_id[0] )
 		{
-			Q_snprintf( result, sizeof( result ), "VALVE_XASH_%s", cl->auth_id );
+			Q_snprintf( result, sizeof( result ), "XASH_%s", cl->auth_id );
 		}
 		else if( cl->WonID == 0 )
 		{
